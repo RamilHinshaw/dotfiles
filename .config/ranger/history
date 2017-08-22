@@ -1,0 +1,29 @@
+shell chmod +x bash-powerline.sh
+search rofi
+shell vim test.sh
+open_with vim
+rename index.html[A
+search readme
+shell ./configure
+shell make
+shell sudo make install
+shell git clone https://github.com/vim/vim
+shell sudo rm vim80
+shell mkdir build
+shell vim
+shell ./vim
+search vim80
+search vim
+open_with chromium-browser
+shell jserve
+w
+git push origin master
+shell git push origin master
+shell git clone https://github.com/RamilHinshaw/RamilHinshaw.github.io
+open_with 
+shell vim README.md
+
+shell git pull origin master
+delete
+shell mkdir Software
+shell mkdir ReactNative
