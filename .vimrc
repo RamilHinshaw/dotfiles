@@ -22,11 +22,15 @@ call vundle#begin()
 
 " ********** |  PLUGINS |  **********  
 
+    "Color Scheme
+    Plugin 'AlessandroYorba/Despacio'
+    Plugin 'kudabux/vim-srcery-drk'
+
     " **** |  ESSENTIALS |  ****  
     Plugin 'VundleVim/Vundle.vim'
-    Plugin 'tomasr/molokai'
+    "Plugin 'tomasr/molokai'
     "Plugin 'joshdick/onedark.vim'
-    Plugin 'crusoexia/vim-monokai'
+    "Plugin 'crusoexia/vim-monokai'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/nerdcommenter'
     "Plugin 'OmniSharp/omnisharp-vim'
@@ -34,14 +38,14 @@ call vundle#begin()
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-dispatch'
     Plugin 'tpope/vim-repeat'
-    Plugin 'scrooloose/syntastic'
+    "Plugin 'scrooloose/syntastic'
+    Plugin 'w0rp/ale'
     Plugin 'tpope/vim-surround'
-    Plugin 'SirVer/ultisnips'
-    Plugin 'valloric/youcompleteme'
+    "Plugin 'valloric/youcompleteme'
     "Plugin 'easymotion/vim-easymotion'
     Plugin 'joequery/Stupid-EasyMotion'
     Plugin 'kien/ctrlp.vim'
-    "Plugin 'godlygeek/tabular'
+    Plugin 'godlygeek/tabular'
     Plugin 'vim-airline/vim-airline'
     "Plugin 'vim-airline/vim-airline-themes'
     Plugin 'joeytwiddle/sexy_scroller.vim'
@@ -51,7 +55,14 @@ call vundle#begin()
     Plugin 'jiangmiao/auto-pairs'
     Plugin 'Konfekt/FastFold'
     Plugin 'ervandew/supertab'
-    "Plugin 'w0rp/ale'
+
+    "SnipMate stuff
+    Plugin 'MarcWeber/vim-addon-mw-utils'
+    Plugin 'tomtom/tlib_vim'
+    Plugin 'garbas/vim-snipmate'
+
+    "Plugin 'SirVer/ultisnips'
+
     
     " **** |  PYTHON |  ****  
     Plugin 'nvie/vim-flake8'
@@ -120,10 +131,11 @@ set number
 "set hlsearch
 set foldmethod=marker
 set foldlevel=99
+set history=10000
  "}}}
 "Asthetics{{{
 syntax enable
-colorscheme monokai
+colorscheme despacio
 "colorscheme molokai
 "let g:molokai_original = 1
 "let g:rehash256 = 1
@@ -139,6 +151,7 @@ set laststatus=2"
     "set t_ut=
 "endif
 "}}}
+
  " Sexy Scroller Configurations{{{
  :let g:SexyScroller_ScrollTime = 30
  :let g:SexyScroller_CursorTime = 2
@@ -176,22 +189,6 @@ let g:syntastic_html_checkers = ['jshint', 'tidy']
 
 
  "***********************************************************}}}
-"Python Stuff {{{
-
-"https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
-let python_highlight_all=1  
-
-"python with virtualenv support
-"py << EOF
-"import os
-"import sys
-"if 'VIRTUAL_ENV' in os.environ:
-"project_base_dir = os.environ['VIRTUAL_ENV']
-"activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-"execfile(activate_this, dict(__file__=activate_this))
-"EOF
-
-"***********************************************************}}}
 "Emment{{{
 let g:user_emmet_install_global = 0
 "Use only in html, css files
@@ -214,6 +211,11 @@ nmap <C-x> <Leader>c<space>
 "Change to sexy comment block when in visual mode (Nicer with multiple selection)
 vmap <C-x> <Leader>cs<space>  
 
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 "Toggle Spacing
 nnoremap <space> za 
 set pastetoggle=<F3> "Toggle Auto Indent on Paste
@@ -230,7 +232,9 @@ nnoremap ;; A;<Esc>|	"Adds ';' at end of line in normal mode
 inoremap ;; <Esc>A;<Esc>|	"Adds ';' at end of line in insert mode
 inoremap ;. <Esc>A.|	"Adds '.' at end of line in insert mode (and goes back insert mode)
 inoremap ;i <Esc>A|	"Goes to end of line insert mode (and goes back into insert mode)
-inoremap ;o <CR><Esc>O |	"When cursor in middle of horizontal HTML Block, breaks block into vertal and goes back to middle
+inoremap ;o <CR><Esc>O|	"When cursor in middle of horizontal HTML Block, breaks block into vertal and goes back to middle
+inoremap ;O <Esc>O|	"Basically New line above current line in insert mode
+inoremap ;z <Esc>zza|	"Centers text in insert mode
 "autocmd FileType javascript,html,css,cpp nnoremap ;; A;<Esc>|	"Adds ';' at end of line in normal mode
 "autocmd FileType javascript,html,cpp inoremap ;; <Esc>A;<Esc>|	"Adds ';' at end of line in insert mode
 "autocmd FileType javascript,html,cpp inoremap ;. <Esc>A.|	"Adds '.' at end of line in insert mode (and goes back insert mode)
@@ -243,10 +247,14 @@ nnoremap <S-w> <C-w>
 "Ale Settings ***************************{{{
 "Dont check while typing, check when on save
 "let g:ale_lint_on_save = 1
-"let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_text_changed = 1
 ""let g:ale_open_list = 1
 ""nmap <silent> <C-[> <Plug>(ale_previous_wrap)
 "nmap <silent> <C-e> <Plug>(ale_next_wrap)
+"
+"Annoying to press change this later!
+nmap <silent> ,n <Plug>(ale_previous_wrap)
+nmap <silent> ,m <Plug>(ale_next_wrap)
 
 
 "enable keyboard shortcuts
@@ -261,3 +269,27 @@ nnoremap <S-w> <C-w>
 "autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 "}}}
+
+"C++ Configurations{{{
+augroup ft_cpp
+  au!
+  au FileType cpp set tabstop=4 "Professor reads it in 4"
+  au FileType cpp set foldmethod=syntax
+augroup END
+"}}}
+"Python Stuff {{{
+
+"https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
+let python_highlight_all=1  
+
+"python with virtualenv support
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+"project_base_dir = os.environ['VIRTUAL_ENV']
+"activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"execfile(activate_this, dict(__file__=activate_this))
+"EOF
+
+"***********************************************************}}}
