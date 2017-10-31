@@ -192,7 +192,7 @@ let g:syntastic_html_checkers = ['jshint', 'tidy']
 "Emment{{{
 let g:user_emmet_install_global = 0
 "Use only in html, css files
-autocmd FileType html,css EmmetInstall
+autocmd FileType html,css,md,markdown EmmetInstall
 let g:user_emmet_leader_key=','
  "}}}
 "Bindings{{{
@@ -243,6 +243,12 @@ inoremap ;z <Esc>zza|	"Centers text in insert mode
 
 "Windows
 nnoremap <S-w> <C-w>
+
+"Copy & Paste
+:inoremap <C-v> <ESC>"+pa
+:vnoremap <C-c> "+y
+:vnoremap <C-d> "+d
+
 "}}}
 "Ale Settings ***************************{{{
 "Dont check while typing, check when on save
