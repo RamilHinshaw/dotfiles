@@ -8,6 +8,9 @@
 "
 " -----------------------
 "	*Ramil Hinshaw's .vimrc
+"	Website: www.RamilHinshaw.com
+" GitHub: https://github.com/RamilHinshaw
+" Twitter: https://twitter.com/RamilHinshaw
 "
 "	-Optimized for Web Development, Python, & C++
 "============================================================================
@@ -25,6 +28,7 @@ call vundle#begin()
     "Color Scheme
     Plugin 'AlessandroYorba/Despacio'
     Plugin 'kudabux/vim-srcery-drk'
+    Plugin 'RamilHinshaw/frostmint'
 
     " **** |  ESSENTIALS |  ****  
     Plugin 'VundleVim/Vundle.vim'
@@ -41,6 +45,7 @@ call vundle#begin()
     "Plugin 'scrooloose/syntastic'
     Plugin 'w0rp/ale'
     Plugin 'tpope/vim-surround'
+    "Plugin 'Rip-Rip/clang_complete'
     "Plugin 'valloric/youcompleteme'
     "Plugin 'easymotion/vim-easymotion'
     Plugin 'joequery/Stupid-EasyMotion'
@@ -51,8 +56,8 @@ call vundle#begin()
     Plugin 'joeytwiddle/sexy_scroller.vim'
     Plugin 'vim-lastplace'
     Plugin 'egalpin/apt-vim'
-    "Plugin 'Raimondi/delimitMate'
-    Plugin 'jiangmiao/auto-pairs'
+    Plugin 'Raimondi/delimitMate'
+    "Plugin 'jiangmiao/auto-pairs'
     Plugin 'Konfekt/FastFold'
     Plugin 'ervandew/supertab'
 
@@ -69,6 +74,7 @@ call vundle#begin()
     Plugin 'tmhedberg/SimpylFold'
 
     " **** |  WEB DEVELOPMENT |  ****  
+    "Plugin 'DougBeney/pickachu' FIX PYTHON HERE (MIGHT HAVE TO NOT COMPILE "FOR PYTHON 2!
     "Plugin 'maksimr/vim-jsbeautify'
     Plugin 'ap/vim-css-color'
     "lugin 'pangloss/vim-javascript'
@@ -82,11 +88,16 @@ call vundle#begin()
     "Plugin 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
     "Plugin 'othree/html5.vim'
     Plugin 'mattn/emmet-vim'
-    Plugin 'gregsexton/MatchTag'
+    "Plugin 'gregsexton/MatchTag'
     runtime macros/matchit.vim
     Plugin 'styled-components/stylelint-processor-styled-components'
     "Plugin 'stylelint/stylelint'
     "Plugin 'marciomazza/vim-brogrammer-theme'
+    "
+    "
+
+    "Other
+    Plugin 'vimwiki/vimwiki'
     
 "*********************************************************************
 call vundle#end()           
@@ -220,6 +231,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 nnoremap <space> za 
 set pastetoggle=<F3> "Toggle Auto Indent on Paste
 
+"Search and replace : https://stackoverflow.com/questions/676600/vim-search-and-replace-selected-text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
 "Stupid EasyMotion
 "map <C-O> <Leader><Leader>w
 map <C-E> <Leader><Leader>W
@@ -283,6 +297,18 @@ augroup ft_cpp
   au FileType cpp set foldmethod=syntax
 augroup END
 "}}}
+"Wiki Configurations{{{
+augroup ft_wiki
+  au!
+  au FileType wiki set foldmethod=marker
+augroup END
+"}}}
+"* Configurations{{{
+augroup vimrc
+  au BufReadPre * setlocal foldmethod=marker
+  "au BufWinEnter * if &fdm == 'marker' | setlocal foldmethod=manual | endif
+augroup END
+"}}}
 "Python Stuff {{{
 
 "https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
@@ -299,3 +325,9 @@ let python_highlight_all=1
 "EOF
 
 "***********************************************************}}}
+
+"Stuff
+ " path to directory where library can be found
+ "let g:clang_library_path='/usr/lib/llvm-3.8/lib'
+ " or path directly to the library file
+ "let g:clang_library_path='/usr/lib64/libclang.so.5.0'
