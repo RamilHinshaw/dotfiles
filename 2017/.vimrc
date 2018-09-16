@@ -1,115 +1,114 @@
-"====================================================================================================
+"============================================================================
+"  ____                 _ _   _   _ _           _                    
+" |  _ \ __ _ _ __ ___ (_) | | | | (_)_ __  ___| |__   __ ___      __
+" | |_) / _` | '_ ` _ \| | | | |_| | | '_ \/ __| '_ \ / _` \ \ /\ / /
+" |  _ < (_| | | | | | | | | |  _  | | | | \__ \ | | | (_| |\ V  V / 
+" |_| \_\__,_|_| |_| |_|_|_| |_| |_|_|_| |_|___/_| |_|\__,_| \_/\_/ 
 "
 "
-"  ██████╗  █████╗ ███╗   ███╗██╗██╗         ██╗  ██╗██╗███╗   ██╗███████╗██╗  ██╗ █████╗ ██╗    ██╗
-"  ██╔══██╗██╔══██╗████╗ ████║██║██║         ██║  ██║██║████╗  ██║██╔════╝██║  ██║██╔══██╗██║    ██║
-"  ██████╔╝███████║██╔████╔██║██║██║         ███████║██║██╔██╗ ██║███████╗███████║███████║██║ █╗ ██║
-"  ██╔══██╗██╔══██║██║╚██╔╝██║██║██║         ██╔══██║██║██║╚██╗██║╚════██║██╔══██║██╔══██║██║███╗██║
-"  ██║  ██║██║  ██║██║ ╚═╝ ██║██║███████╗    ██║  ██║██║██║ ╚████║███████║██║  ██║██║  ██║╚███╔███╔╝
-"  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚══════╝    ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝
+" -----------------------
+"	*Ramil Hinshaw's .vimrc
+"	Website: www.RamilHinshaw.com
+" GitHub: https://github.com/RamilHinshaw
+" Twitter: https://twitter.com/RamilHinshaw
 "
-"
-" ---------------------------------------
-"	*Ramil Hinshaw's .vimrc |V2|
-"	Website:  www.RamilHinshaw.com
-"	GitHub:   www.github.com/RamilHinshaw
-"	Twitter:  www.twitter.com/RamilHinshaw
-"
-"	-Optimized for C, C++, Web, & Python Development
-"====================================================================================================
+"	-Optimized for Web Development, Python, & C++
+"============================================================================
 
 "VIM MODE ACTIVATED! :D
 set nocompatible 
 
-" Plugins {{{
+" Plugins{{{
 "Uses Vundle as the Plugin Manager : https://github.com/VundleVim/Vundle.vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " ********** |  PLUGINS |  **********  
-  	Plugin 'VundleVim/Vundle.vim'
 
-
-    " **** |  COLOR SCHEME |  ****  
-    Plugin 'joshdick/onedark.vim'
-    Plugin 'arcticicestudio/nord-vim'
-    "Plugin 'RamilHinshaw/frostmint' "My Color Scheme
-
+    "Color Scheme
+    Plugin 'AlessandroYorba/Despacio'
+    Plugin 'kudabux/vim-srcery-drk'
+    Plugin 'RamilHinshaw/frostmint'
 
     " **** |  ESSENTIALS |  ****  
-    
-    Plugin 'w0rp/ale' 
-
+    Plugin 'VundleVim/Vundle.vim'
+    "Plugin 'tomasr/molokai'
+    "Plugin 'joshdick/onedark.vim'
+    "Plugin 'crusoexia/vim-monokai'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/nerdcommenter'
-    Plugin 'ap/vim-buftabline'
-
-    " The Almighty TimPop
+    "Plugin 'OmniSharp/omnisharp-vim'
+    "Plugin 'OmniSharp/omnisharp-roslyn'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-dispatch'
     Plugin 'tpope/vim-repeat'
+    "Plugin 'scrooloose/syntastic'
+    Plugin 'w0rp/ale'
     Plugin 'tpope/vim-surround'
-
+    "Plugin 'Rip-Rip/clang_complete'
+    "Plugin 'valloric/youcompleteme'
+    "Plugin 'easymotion/vim-easymotion'
     Plugin 'joequery/Stupid-EasyMotion'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'godlygeek/tabular'
     Plugin 'vim-airline/vim-airline'
+    "Plugin 'vim-airline/vim-airline-themes'
     Plugin 'joeytwiddle/sexy_scroller.vim'
     Plugin 'vim-lastplace'
-    Plugin 'kien/ctrlp.vim'
-    "Plugin 'shougo/neosnippet'
+    Plugin 'egalpin/apt-vim'
+    Plugin 'Raimondi/delimitMate'
+    "Plugin 'jiangmiao/auto-pairs'
+    Plugin 'Konfekt/FastFold'
     Plugin 'ervandew/supertab'
-
 
     "SnipMate stuff
     Plugin 'MarcWeber/vim-addon-mw-utils'
     Plugin 'tomtom/tlib_vim'
     Plugin 'garbas/vim-snipmate'
 
-
-    " **** | C & C++ | ****
-    " INSTALL clang, cppcheck   | from repo
-    Plugin 'richq/cmake-lint'
-    Plugin 'octol/vim-cpp-enhanced-highlight'
-    Plugin 'vim-scripts/a.vim' "Switch between .hpp & .cpp fast with :a
-
-
-    " **** |  GIT |  ****  
-    Plugin 'mhinz/vim-signify'
-    Plugin 'jreybert/vimagit'
+    "Plugin 'SirVer/ultisnips'
 
     
     " **** |  PYTHON |  ****  
-    " Plugin 'hhatto/autopep8'
-    " NOTHING HERE YET
- 
+    Plugin 'nvie/vim-flake8'
+    Plugin 'tmhedberg/SimpylFold'
 
     " **** |  WEB DEVELOPMENT |  ****  
+    "Plugin 'DougBeney/pickachu' FIX PYTHON HERE (MIGHT HAVE TO NOT COMPILE "FOR PYTHON 2!
     "Plugin 'maksimr/vim-jsbeautify'
     Plugin 'ap/vim-css-color'
     "lugin 'pangloss/vim-javascript'
     "Plugin 'jaxbot/browserlink.vim'
-    "Plugin 'wookiehangover/jshint.vim'
+    Plugin 'wookiehangover/jshint.vim'
     "Plugin 'ternjs/tern_for_vim', {'do': 'npm install'}
-    "Plugin  'JulesWang/css.vim',
-    "Plugin 'hail2u/vim-css3-syntax'
-    "Plugin 'othree/csscomplete.vim'
-    "Plugin 'https://github.com/mxw/vim-jsx'
+    Plugin  'JulesWang/css.vim',
+    Plugin 'hail2u/vim-css3-syntax'
+    Plugin 'othree/csscomplete.vim'
+    Plugin 'https://github.com/mxw/vim-jsx'
     "Plugin 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
     "Plugin 'othree/html5.vim'
     Plugin 'mattn/emmet-vim'
     "Plugin 'gregsexton/MatchTag'
-    "Plugin macros/matchit.vim
-    "Plugin 'styled-components/stylelint-processor-styled-components'
+    runtime macros/matchit.vim
+    Plugin 'styled-components/stylelint-processor-styled-components'
     "Plugin 'stylelint/stylelint'
+    "Plugin 'marciomazza/vim-brogrammer-theme'
+    "
+    "
 
+    "Other
+    Plugin 'vimwiki/vimwiki'
     
 "*********************************************************************
 call vundle#end()           
 "PLUGIN MANAGER ENDS ******************}}}
-" AutoStart {{{
+"AutoStart{{{
 
 "Auto Close Folds on start
 au BufRead * normal zM
 
- "***********************************************************}}}
-" Settings {{{
+"}}}
+"Settings{{{
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -144,24 +143,18 @@ set number
 set foldmethod=marker
 set foldlevel=99
 set history=10000
-
-"Buffers
-set hidden
  "}}}
-" Asthetics {{{
+"Asthetics{{{
 syntax enable
-set t_Co=256 "Enable 256 Colors, set before scheme
+colorscheme despacio
+"colorscheme molokai
+"let g:molokai_original = 1
+"let g:rehash256 = 1
 set background=dark
-let g:onedark_termcolors=256
-
-"colorscheme onedark
-colorscheme frostmint
-"colorscheme despacio
-"
+set t_Co=256  " vim-monokai now only support 256 colours in terminal.
 let g:airline_powerline_fonts = 1
 "Used to show airline properly
 set laststatus=2"
-set mouse=a
 
 "if &term =~ '256color'
     "" Disable Background Color Erase (BCE) so that color schemes
@@ -169,13 +162,14 @@ set mouse=a
     "set t_ut=
 "endif
 "}}}
- " Sexy Scroller Configurations {{{
+
+ " Sexy Scroller Configurations{{{
  :let g:SexyScroller_ScrollTime = 30
  :let g:SexyScroller_CursorTime = 2
  :let g:SexyScroller_MaxTime = 350
  :let g:SexyScroller_EasingStyle = 1
  "***********************************************************}}}
- " Easy Motion Configurations {{{
+ "Easy Motion Configurations{{{
  let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
  " Jump to anywhere you want with minimal keystrokes, with just one key binding.
@@ -185,16 +179,34 @@ set mouse=a
  " Turn on case insensitive feature
  let g:EasyMotion_smartcase = 1
  "*********************************************************************************}}}
-" Emment {{{
+"Syntastic Configurations {{{
+ set statusline+=%#warningmsg#
+ set statusline+=%{SyntasticStatuslineFlag()}
+ set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_auto_jump = 0
+let g:syntastic_check_on_wq = 1 
+let b:syntastic_skip_checks = 0
+let g:synatastic_enable_signs=1
+
+let g:syntastic_javascript_checkers = ['jshint', 'jsl', 'eslint']
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_css = ['csslint']
+let g:syntastic_cpp = ['gcc']
+let g:syntastic_html_checkers = ['jshint', 'tidy']
+
+
+ "***********************************************************}}}
+"Emment{{{
 let g:user_emmet_install_global = 0
 "Use only in html, css files
 autocmd FileType html,css,md,markdown EmmetInstall
 let g:user_emmet_leader_key=','
-
- "*************************************************************}}}
-" Bindings {{{
-
+ "}}}
+"Bindings{{{
 noremap H 0
 noremap L $
 nnoremap K <c-u>
@@ -203,16 +215,6 @@ nnoremap <c-u> <c-b>
 nnoremap <c-d> <c-f>
 nnoremap <c-j> J
 nnoremap <c-s> s 
-
-"set hidden
-"nnoremap <Left> :bprev<CR>
-"nnoremap <Right> :bnext<CR>
-
-"Switch Buffers
-map <S-Left> :bprev<CR>
-map <S-Right> :bnext<CR>
-
-
 map <C-n> :NERDTreeToggle<CR>
 
 "Comment Toggle
@@ -227,16 +229,19 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "Toggle Spacing
 nnoremap <space> za 
-set pastetoggle=<F4> "Toggle Auto Indent on Paste
+set pastetoggle=<F3> "Toggle Auto Indent on Paste
+
+"Search and replace : https://stackoverflow.com/questions/676600/vim-search-and-replace-selected-text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 "Stupid EasyMotion
 "map <C-O> <Leader><Leader>w
 map <C-E> <Leader><Leader>W
 map F <Leader><Leader>f
 
-nnoremap <leader><leader>m :colorscheme default <Enter>
+nnoremap <leader><leader>m :colorscheme molokai <Enter>
 
-"Handy Semicolon Functions
+"Javascript Stuff
 nnoremap ;; A;<Esc>|	"Adds ';' at end of line in normal mode
 inoremap ;; <Esc>A;<Esc>|	"Adds ';' at end of line in insert mode
 inoremap ;. <Esc>A.|	"Adds '.' at end of line in insert mode (and goes back insert mode)
@@ -244,15 +249,13 @@ inoremap ;i <Esc>A|	"Goes to end of line insert mode (and goes back into insert 
 inoremap ;o <CR><Esc>O|	"When cursor in middle of horizontal HTML Block, breaks block into vertal and goes back to middle
 inoremap ;O <Esc>O|	"Basically New line above current line in insert mode
 inoremap ;z <Esc>zza|	"Centers text in insert mode
-
-"Javascript Stuff
 "autocmd FileType javascript,html,css,cpp nnoremap ;; A;<Esc>|	"Adds ';' at end of line in normal mode
 "autocmd FileType javascript,html,cpp inoremap ;; <Esc>A;<Esc>|	"Adds ';' at end of line in insert mode
 "autocmd FileType javascript,html,cpp inoremap ;. <Esc>A.|	"Adds '.' at end of line in insert mode (and goes back insert mode)
 "autocmd FileType javascript,html,cpp inoremap ;i <Esc>A|	"Goes to end of line insert mode (and goes back into insert mode)
 "autocmd FileType html,cpp inoremap ;o <CR><Esc>O |	"When cursor in middle of horizontal HTML Block, breaks block into vertal and goes back to middle
 
-"Move Window Panes
+"Windows
 nnoremap <S-w> <C-w>
 
 "Copy & Paste
@@ -260,71 +263,71 @@ nnoremap <S-w> <C-w>
 :vnoremap <C-c> "+y
 :vnoremap <C-d> "+d
 
-"If I forget sudo
-cmap w!! w !sudo tee % >/dev/null
+"}}}
+"Ale Settings ***************************{{{
+"Dont check while typing, check when on save
+"let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 1
+""let g:ale_open_list = 1
+""nmap <silent> <C-[> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-e> <Plug>(ale_next_wrap)
+"
+"Annoying to press change this later!
+nmap <silent> ,n <Plug>(ale_previous_wrap)
+nmap <silent> ,m <Plug>(ale_next_wrap)
 
-"Plugin Bindings
-nnoremap <S-p> :CtrlPBuffer<CR> | "Search within Buffers
 
-"*************************************************************************************************************************}}}
-" C++ Configurations {{{
+"enable keyboard shortcuts
+"let g:tern_map_keys=1
+"show argument hints
+"let g:tern_show_argument_hints='on_hold'
+
+"JSX syntax highlighting for javascript
+"let g:jsx_ext_required = 0
+
+"CSS AutoComplete
+"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+"}}}
+
+"C++ Configurations{{{
 augroup ft_cpp
   au!
-  au FileType cpp set tabstop=4 
+  au FileType cpp set tabstop=4 "Professor reads it in 4"
   au FileType cpp set foldmethod=syntax
 augroup END
+"}}}
+"Wiki Configurations{{{
+augroup ft_wiki
+  au!
+  au FileType wiki set foldmethod=marker
+augroup END
+"}}}
+"* Configurations{{{
+augroup vimrc
+  au BufReadPre * setlocal foldmethod=marker
+  "au BufWinEnter * if &fdm == 'marker' | setlocal foldmethod=manual | endif
+augroup END
+"}}}
+"Python Stuff {{{
+
+"https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
+let python_highlight_all=1  
+
+"python with virtualenv support
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+"project_base_dir = os.environ['VIRTUAL_ENV']
+"activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"execfile(activate_this, dict(__file__=activate_this))
+"EOF
+
 "***********************************************************}}}
-"  ALE {{{
 
-" Enable completion where available.
-let g:ale_completion_enabled = 1
-
-" KeyBinds
-map <F2> :ALEGoToDefinition<CR>
-map <F3> :ALEFindReferences<CR>
-
-" Jump to errors
-nmap <silent> <C-Right> <Plug>(ale_previous_wrap)
-nmap <silent> <C-Left> <Plug>(ale_next_wrap)
-
-" Default
-"let g:ale_sign_error = '>>'
-"let g:ale_sign_warning = '--'
-
-" Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
-
-" Show 5 lines of errors (default: 10)
-"let g:ale_list_window_size = 5
-
-
-
-
-
-"************************************************************}}}
-" GUIDE  "{{{
-
-"Simple guide for myself on how to use my vim configuration file.
-
-
-  "ALE - linting, completion, references, goToDefinition, prettyfy, etc
-  "https://github.com/w0rp/ale#usage-linting
-
-  "Comment Toggle - Ctrl-X
-
-  "WIP
-
-  "press zf on highlited block to turn into foldable block
-
-
-
-
-
-
-
-
-
-
-
-
-"************************************************************}}}
+"Stuff
+ " path to directory where library can be found
+ "let g:clang_library_path='/usr/lib/llvm-3.8/lib'
+ " or path directly to the library file
+ "let g:clang_library_path='/usr/lib64/libclang.so.5.0'
