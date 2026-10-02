@@ -18,6 +18,22 @@ local function map(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
+-- ============================================================================
+-- PLUGIN DETECTION
+-- ============================================================================
+
+local plugins = {}
+local function has(name)
+  if plugins[name] ~= nil then return plugins[name] end
+  local ok = pcall(require, name)
+  plugins[name] = ok
+  return ok
+end
+
+-- ============================================================================
+-- GENERAL (no plugin deps)
+-- ============================================================================
+
 -- NvimTree
 map("n", "<C-n>", "<cmd>Neotree toggle<cr>", { desc = "Toggle NvimTree" })
 
@@ -41,32 +57,40 @@ map({"n", "v", "x", "o"}, "<C-d>", "<C-f>", { desc = "Scroll down a full page" }
 map({"n", "v", "x", "o"}, "<C-j>", "J", { desc = "Join line below" }) -- "nnoremap <c-j> J"
 map({"n", "v", "x", "o"}, "<C-s>", "s", { desc = "Substitute character" }) -- "nnoremap <c-s> s"
 
---Switch Buffers
+-- Switch Buffers
 map ("n", "<S-Left>", ":bprev<CR>")
 map ("n", "<S-Right>", ":bnext<CR>")
 map ("n", "<C-h>", ":bprev<CR>")
 map ("n", "<C-l>", ":bnext<CR>")
 map("n", "<leader>bd", ":bw<CR>", { desc = "Close buffer" })
 
--- Telescope (grep)
-local builtin = require('telescope.builtin')
-map('n', '<leader>ff', builtin.find_files, { desc = 'telescope find files' })
-map('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-map('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-map('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-map('n', '<leader>fo', builtin.oldfiles)
 
--- Diagnostics
-vim.keymap.set("n", "<leader>dd", function()
-  require("telescope.builtin").diagnostics({ bufnr = 0 })
-end, { noremap = true, silent = true, desc = "Telescope: Buffer diagnostics" })
+-- ============================================================================
+-- TELESCOPE
+-- ============================================================================
+-- Grep
+if has("telescope.builtin") then
+  local builtin = require("telescope.builtin")
 
-map ('n', '<leader>dt', builtin.lsp_type_definitions)
-map ('n', '<leader>dr', builtin.lsp_references)
-map ('n', '<leader>dl', builtin.lsp_definitions)
-map ('n', '<leader>di', builtin.lsp_implementations)
-map ('n', '<leader>ds', builtin.lsp_document_symbols)
-map ('n', '<C-d>', "<cmd>Trouble diagnostics toggle<cr>")
+  map('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+  map('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+  map('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+  map('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+  map('n', '<leader>fo', builtin.oldfiles)
+
+  vim.keymap.set("n", "<leader>dd", function()
+    require("telescope.builtin").diagnostics({ bufnr = 0 })
+  end, { noremap = true, silent = true, desc = "Telescope: Buffer diagnostics" })
+
+	-- Diagnostics
+  map('n', '<leader>dt', builtin.lsp_type_definitions)
+  map('n', '<leader>dr', builtin.lsp_references)
+  map('n', '<leader>dl', builtin.lsp_definitions)
+  map('n', '<leader>di', builtin.lsp_implementations)
+  map('n', '<leader>ds', builtin.lsp_document_symbols)
+end
+
+map('n', '<C-d>', "<cmd>Trouble diagnostics toggle<cr>")
 --Copilot
 map("n", "<leader>cc", ":CopilotChatToggle<CR>", { noremap = true, silent = true, desc = "Toggle Copilot Chat" })
 map("x", "<leader>cc", ":'<,'>CopilotChat<cr>", { desc = "copilot chat selection" })
@@ -112,7 +136,7 @@ map("i", "<C-S-v>", "<C-r>+")
 -- Delete Buffer without breaking layout (plugin)
 map("n", "<C-c>", "<cmd>Bdelete<cr>")
 
--- -- ============================================================================
+-- ============================================================================
 -- AI / CODECOMPANION
 -- ============================================================================
 
@@ -205,7 +229,10 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
--- QUIT ALL (make :q into :qa to quit all windows)
+-- ============================================================================
+-- QUIT ALL
+-- ============================================================================
+
 vim.keymap.set("c", "<CR>", function()
   local command = vim.fn.getcmdline()
 
@@ -220,12 +247,12 @@ vim.keymap.set("c", "<CR>", function()
   end
 
   return "<CR>"
-end, {
-  expr = true,
-  desc = "Make :q quit Neovim",
-})
+end, { expr = true, desc = "Make :q quit Neovim" })
 
--- CUSTOM SCRIPTS
+
+-- ============================================================================
+-- CUSTOM COMMANDS
+-- ============================================================================
 vim.api.nvim_create_user_command("BufOnly", function()
   local current = vim.api.nvim_get_current_buf()
 

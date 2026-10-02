@@ -26,11 +26,10 @@ require("config.options")
 -- Bootstrap lazy.nvim (loads all plugins from lua/plugins)
 require("config.lazy")
 
--- Load custom Keymaps
+-- -- Load custom Keymaps
 require("config.keymaps")
-
--- # SET COLORSCHEME HERE # --
-vim.cmd.colorscheme("ember")
-
-require("config.post_ai_setup")
--- require("config.post_autostart")
+--
+-- -- # SET COLORSCHEME HERE # --
+-- vim.cmd.colorscheme("ember")
+--
+-- require("config.post_ai_setup")

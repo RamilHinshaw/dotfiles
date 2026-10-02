@@ -32,3 +32,9 @@ require("lazy").setup({
   checker = { enabled = false },
 })
 
+-- # SET COLORSCHEME HERE # --
+vim.cmd.colorscheme("ember")
+
+-- # Post start
+require("config.post_ai_setup")
+
